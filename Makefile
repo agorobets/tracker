@@ -7,9 +7,9 @@ install:
 
 .PHONY: run
 run:
-	PYTHONPATH=$(shell pwd)/src gunicorn -c src/core/gunicorn.py main:app
+	PYTHONPATH=$(shell pwd)/src gunicorn --workers 3 -b 0.0.0.0:80 wsgi:app
 
 .PHONY: rundev
 rundev:
-	PYTHONPATH=$(shell pwd)/src
+	PYTHONPATH=$(shell pwd)/src flask --app main run
 
